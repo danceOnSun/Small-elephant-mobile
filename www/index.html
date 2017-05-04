@@ -36,83 +36,118 @@
   </head>
   <body ng-app="starter" ng-controller="TodoCtrl">
 
-<ion-side-menus>
+<ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+             
+    <ion-nav-view></ion-nav-view>
 
-<!-- 中心内容 -->
-<ion-side-menu-content>
-  <ion-header-bar class="bar-dark">
-    <button class="button button-icon" ng-click="toggleProjects()">
-      <i class="icon ion-navicon"></i>
-    </button>
-    <h1 class="title">欢迎您 : {{currentUser.name}}</h1>
-    <!-- 新增按钮 -->
-    <button class="button button-icon" ng-click="newTask()">
-      登陆
-    </button>
-  </ion-header-bar>
-  <ion-content scroll="false">
-    <ion-list>
-      <ion-item ng-repeat="task in activeProject.tasks">
-        {{task.title}}
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-side-menu-content>
 
-<!-- 左边栏 -->
-<ion-side-menu side="left">
-<ion-header-bar class="bar-dark">
-  <h1 class="title">Projects</h1>
-  <button class="button button-icon ion-plus" ng-click="newProject()">
-  </button>
-</ion-header-bar>
-<ion-content scroll="false">
-  <ion-list>
-    <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-      {{project.title}}
-    </ion-item>
-  </ion-list>
-</ion-content>
-</ion-side-menu>
+    <script id="templates/tabs.html" type="text/ng-template">
+      <ion-tabs class="tabs-icon-top tabs-positive">
 
-</ion-side-menus>
+        <ion-tab title="首页" icon="ion-home" href="#/tab/home">
+          <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
 
-  <!--添加页面-->
-  <script id="new-task.html" type="text/ng-template">
+        <ion-tab title="分类" icon="ion-ios-information" href="#/tab/about">
+          <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
+		
+		<ion-tab title="寻Me" icon="ion-ios-information" href="#/tab/about">
+          <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
+		
+		<ion-tab title="购物车" icon="ion-ios-information" href="#/tab/about">
+          <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
 
-  <div class="modal">
+        <ion-tab title="我的" icon="ion-ios-world" ui-sref="tabs.contact">
+          <ion-nav-view name="contact-tab"></ion-nav-view>
+        </ion-tab>
 
-    <!-- Modal header bar -->
-    <ion-header-bar class="bar-secondary">
-      <h1 class="title">登陆</h1>
-      <button class="button button-clear button-positive" ng-click="closeNewTask()">取消</button>
-    </ion-header-bar>
+      </ion-tabs>
+    </script>
 
-    <!-- Modal content area -->
-    <ion-content>
+    <script id="templates/home.html" type="text/ng-template">
+      <ion-view view-title="Home">
+        <ion-content class="padding">
+          <p>
+            <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a>
+          </p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-      <form ng-submit="login(user)">
-        <div class="list">
-          <label class="item item-input">
-			<span class="input-label">用户名：</span>
-            <input type="text" ng-model="user.name">
-          </label>
-		  <label class="item item-input">
-			<span class="input-label">密码：</span>
-			<input type="password" ng-model="user.pwd">
-		  </label>
-        </div>
+    <script id="templates/facts.html" type="text/ng-template">
+      <ion-view view-title="Facts">
+        <ion-content class="padding">
+          <p>Banging your head against a wall uses 150 calories an hour.</p>
+          <p>Dogs have four toes on their hind feet, and five on their front feet.</p>
+          <p>The ant can lift 50 times its own weight, can pull 30 times its own weight and always falls over on its right side when intoxicated.</p>
+          <p>A cockroach will live nine days without it's head, before it starves to death.</p>
+          <p>Polar bears are left handed.</p>
+          <p>
+            <a class="button icon ion-home" href="#/tab/home"> Home</a>
+            <a class="button icon icon-right ion-chevron-right" href="#/tab/facts2">More Facts</a>
+          </p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-        <div class="padding">
-          <button type="submit" class="button button-block button-positive">确定</button>
-        </div>
-      </form>
+    <script id="templates/facts2.html" type="text/ng-template">
+      <ion-view view-title="Also Factual">
+        <ion-content class="padding">
+          <p>111,111,111 x 111,111,111 = 12,345,678,987,654,321</p>
+          <p>1 in every 4 Americans has appeared on T.V.</p>
+          <p>11% of the world is left-handed.</p>
+          <p>1 in 8 Americans has worked at a McDonalds restaurant.</p>
+          <p>$283,200 is the absolute highest amount of money you can win on Jeopardy.</p>
+          <p>101 Dalmatians, Peter Pan, Lady and the Tramp, and Mulan are the only Disney cartoons where both parents are present and don't die throughout the movie.</p>
+          <p>
+            <a class="button icon ion-home" href="#/tab/home"> Home</a>
+            <a class="button icon ion-chevron-left" href="#/tab/facts"> Scientific Facts</a>
+          </p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-    </ion-content>
+    <script id="templates/about.html" type="text/ng-template">
+      <ion-view view-title="About">
+        <ion-content class="padding">
+          <h3>Create hybrid mobile apps with the web technologies you love.</h3>
+          <p>Free and open source, Ionic offers a library of mobile-optimized HTML, CSS and JS components for building highly interactive apps.</p>
+          <p>Built with Sass and optimized for AngularJS.</p>
+          <p>
+            <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">Tabs Nav Stack</a>
+          </p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-  </div>
+    <script id="templates/nav-stack.html" type="text/ng-template">
+      <ion-view view-title="Tab Nav Stack">
+        <ion-content class="padding">
+          <p><img src="http://ionicframework.com/img/diagrams/tabs-nav-stack.png" style="width:100%"></p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-</script>
+    <script id="templates/contact.html" type="text/ng-template">
+      <ion-view title="Contact">
+        <ion-content>
+          <div class="list">
+            <div class="item">
+              @IonicFramework
+            </div>
+            <div class="item">
+              @DriftyTeam
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
 
   </body>
 </html>

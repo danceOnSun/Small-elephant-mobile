@@ -39,7 +39,65 @@ var app = angular.module('starter', ['ionic']).factory('Projects', function() {
 .constant('ApiEndpoint', {
   url: 'http://192.168.0.105:8100'
   })
-.config(function($httpProvider) {
+.config(function($httpProvider,$stateProvider, $urlRouterProvider) {
+	
+	 $stateProvider
+        .state('tabs', {
+          url: "/tab",
+          abstract: true,
+          templateUrl: "templates/tabs.html"
+        })
+        .state('tabs.home', {
+          url: "/home",
+          views: {
+            'home-tab': {
+              templateUrl: "templates/home.html",
+              controller: 'HomeTabCtrl'
+            }
+          }
+        })
+        .state('tabs.facts', {
+          url: "/facts",
+          views: {
+            'home-tab': {
+              templateUrl: "templates/facts.html"
+            }
+          }
+        })
+        .state('tabs.facts2', {
+          url: "/facts2",
+          views: {
+            'home-tab': {
+              templateUrl: "templates/facts2.html"
+            }
+          }
+        })
+        .state('tabs.about', {
+          url: "/about",
+          views: {
+            'about-tab': {
+              templateUrl: "templates/about.html"
+            }
+          }
+        })
+        .state('tabs.navstack', {
+          url: "/navstack",
+          views: {
+            'about-tab': {
+              templateUrl: "templates/nav-stack.html"
+            }
+          }
+        })
+        .state('tabs.contact', {
+          url: "/contact",
+          views: {
+            'contact-tab': {
+              templateUrl: "templates/contact.html"
+            }
+          }
+        });
+	  
+	  $urlRouterProvider.otherwise("/tab/home");
 
 	/**  
      * 重写angular的param方法，使angular使用jquery一样的数据序列化方式  The workhorse; converts an object to x-www-form-urlencoded serialization.  
@@ -194,11 +252,11 @@ var app = angular.module('starter', ['ionic']).factory('Projects', function() {
   };
 
   // Create our modal
-  $ionicModal.fromTemplateUrl('new-task.html', function(modal) {
+ /* $ionicModal.fromTemplateUrl('new-task.html', function(modal) {
     $scope.taskModal = modal;
   }, {
     scope: $scope
-  });
+  });*/
 
   $scope.login = function(user) {
     if(!user) {
@@ -254,7 +312,9 @@ var app = angular.module('starter', ['ionic']).factory('Projects', function() {
     }
   });
 
-});
+}).controller('HomeTabCtrl', function($scope) {
+      console.log('HomeTabCtrl');
+    });
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
