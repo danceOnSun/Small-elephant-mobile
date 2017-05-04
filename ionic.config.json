@@ -1,0 +1,17 @@
+{
+  "name": "myIonic",
+  "app_id": "",
+  "watchPatterns": [
+        "www/js/*",
+        "www/js/*/*",
+        "www/*.html",
+        "www/templates/*.html",
+        "www/css/*.css"
+  ],
+   "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://192.168.0.101:8104"
+    }
+  ]
+}
