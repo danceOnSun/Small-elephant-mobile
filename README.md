@@ -22,4 +22,4 @@
 
 截图
 
-* 
+* ![demo](http://git.oschina.net/orangehs/xbin-mobile/raw/master/imgs/demo.png)
